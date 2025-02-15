@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const BarChart = ({data, descriptions}) => {
   const barRef = useRef();
-  //  высота ширина диограммы
+  //  высота ширина
   const width =300;
   const height =200;
 
