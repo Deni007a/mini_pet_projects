@@ -3,7 +3,7 @@
 Проект представляет собой сервис,
 позволяющий строить диаграммы онлайн.
 
-ссылка на деплой [https://github.com/Deni007a/mini_pet_projects/ ](https://deni007a.github.io/mini_pet_projects/)
+ссылка на деплой [https://deni007a.github.io/mini_pet_projects/](https://deni007a.github.io/mini_pet_projects/)
 <details>
  <summary>описание</summary>
 Сервис должен строить диаграммы
@@ -16,3 +16,7 @@
 
 проверка типов https://github.com/DefinitelyTyped/DefinitelyTyped
 </details>
+
+---
+
+
