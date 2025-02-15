@@ -2,11 +2,12 @@ import {useRef, useEffect} from 'react';
 import * as d3 from 'd3';
 import PropTypes from "prop-types";
 
-const BarChart = ({data, descriptions}) => {
+
+const BarChart = ({ data, descriptions }) => {
   const barRef = useRef();
   //  высота ширина
-  const width =300;
-  const height =200;
+  const width = 300;
+  const height = 200;
 
   useEffect(() => {
     const svg = d3.select(barRef.current)
@@ -25,7 +26,9 @@ const BarChart = ({data, descriptions}) => {
       .domain([0, d3.max(data)])
       .range([height, 0]);
 
-    const xAxis = d3.axisBottom(xScale).tickFormat(i => data[i]);
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    const xAxis = d3.axisBottom(xScale).tickFormat(i => descriptions[i]);
     const yAxis = d3.axisLeft(yScale).ticks(5);
 
     svg.append('g')
@@ -40,21 +43,19 @@ const BarChart = ({data, descriptions}) => {
       .enter()
       .append('rect')
       .attr('x', (d, i) => xScale(i))
-      .attr('y', yScale)
+      .attr('y', d => yScale(d))
       .attr('width', xScale.bandwidth())
       .attr('height', d => height - yScale(d))
-      .attr('fill', 'blue');
-  }, [data]);
+      .attr('fill', (d, i) => colorScale(i));
+  }, [data, descriptions]);
 
   return (
-
     <div>
       <svg ref={barRef}></svg>
-      ;
       <div>
         {data.map((_, index) => (
-          <div className="diagramDescription" key={index} style={{marginBottom: '10px'}}>
-            <span style={{color: d3.schemeCategory10[index], fontWeight: 'bold'}}>
+          <div className="diagramDescription" key={index} style={{ marginBottom: '10px' }}>
+            <span style={{ color: d3.schemeCategory10[index], fontWeight: 'bold' }}>
               {descriptions[index]}
             </span>
           </div>
